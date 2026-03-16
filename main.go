@@ -1,9 +1,8 @@
 package main
 
 import (
-	//	"database/sql"
+	"encoding/json"
 	"fmt"
-	"io"
 	_ "modernc.org/sqlite"
 	"net/http"
 )
@@ -14,21 +13,30 @@ type Message struct {
 	USER string `json:"user"`
 }
 
-var chatApi = "https://chat.joelsiervas.online/"
+var messages []Message
+var chatApi = "https://chat.joelsiervas.online"
 
 func getMessages(w http.ResponseWriter, r *http.Request) {
-	resp, _ := http.Get(chatApi + "/messages")
-	io.Copy(w, resp.Body)
+	resp, err := http.Get(chatApi + "/messages")
+	if err != nil {
+		fmt.Printf("Error in API get: ", err)
+	}
+	json.NewDecoder(resp.Body).Decode(&messages)
+	json.NewEncoder(w).Encode(messages)
 }
 
 func postMessages(w http.ResponseWriter, r *http.Request) {
-
+	_, err := http.Post(chatApi+"/messages", "application/json", r.Body)
+	if err != nil {
+		fmt.Printf("Error in API post: ", err)
+	}
+	w.WriteHeader(200)
 }
 
 func main() {
-	http.Handle("GET /", http.FileServer(http.Dir("static")))
-	http.HandleFunc("GET /api/messages", getMessages)
-	http.HandleFunc("POST /api/messages", postMessages)
+	http.Handle("/", http.FileServer(http.Dir("./static")))
+	http.HandleFunc("GET /messages", getMessages)
+	http.HandleFunc("POST /messages", postMessages)
 
 	fmt.Println("Server running on port 8080")
 	err := http.ListenAndServe("127.0.0.1:8080", nil)

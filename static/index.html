@@ -9,15 +9,18 @@
 </head>
 
 <body>
-    <h1>Menú para Chat</h1>
-    <script src="./script.js"></script>
-
     <div id="container">
-        <ul id="messageList">
-        </ul>
-        <textarea id="message"></textarea>
-        <button id="send"></button>
+        <h1>Chatroom Web 2026</h1>
+        <h2>Mensajes actuales de la clase</h2>
+        <div id="content">
+            <ul id="messageList"></ul>
+        </div>
+        <div id="input">
+            <textarea id="message" maxlength="150" placeholder="Hablarle a la clase"></textarea>
+            <button id="send" onclick='postMessage()'>Enviar</button>
+        </div>
     </div>
+    <script src="./script.js"></script>
 </body>
 
 </html>
