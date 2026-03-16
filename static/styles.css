@@ -11,7 +11,7 @@
     --textColor: chartreuse;
     --bgColor: rgb(50, 50, 50);
     --labelColor: rgb(70, 70, 70);
-    --bgOpacity: 0.97;
+    --bgOpacity: 0.95;
 }
 
 body {
@@ -160,6 +160,26 @@ button:active {
     background-color: var(--bgColor);
     outline: 2px solid black;
     opacity: var(--bgOpacity);
+    box-sizing: border-box;
+    scrollbar-width: 40px;
+}
+
+#content::-webkit-scrollbar {
+    width: 12px;
+    height: 70%;
+}
+
+#content::-webkit-scrollbar-track {
+    background: var(--labelColor);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+}
+
+#content::-webkit-scrollbar-thumb {
+    background: var(--textColor);
+    border-radius: 12px;
+    border: 2px solid var(--labelColor);
 }
 
 #input {
@@ -170,6 +190,8 @@ button:active {
     align-items: center;
     justify-content: center;
     opacity: var(--bgOpacity);
+    margin-top: -15px;
+    padding-bottom: 10px;
 }
 
 #input * {
@@ -177,6 +199,7 @@ button:active {
 }
 
 #msglabel {
+    height: 35px;
     outline: 2px solid black;
     align-self: flex-start;
     display: flex;
@@ -209,13 +232,13 @@ button:active {
     align-items: center;
     justify-content: center;
     align-self: center;
-    margin-top: -50px;
+    margin-top: -40px;
 }
 
 #userLabel {
     display: flex;
     width: 250px;
-    height: 50px;
+    height: 40px;
     border-radius: 15px 0px 0px 15px;
     background-color: var(--labelColor);
     align-items: center;

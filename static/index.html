@@ -14,20 +14,20 @@
             <h1>Chatroom Web 2026</h1>
         </div>
         <div id="msglabel">
-            <h2>Mensajes actuales de la clase</h2>
+            <h2>Mensajes de la clase</h2>
         </div>
         <div id="content">
             <ul id="messageList"></ul>
         </div>
         <div id="input">
-            <textarea id="message" maxlength="150" placeholder="Hablarle a la clase..."></textarea>
-            <button id="send" onclick='postMessage()'>Enviar</button>
+            <textarea id="message" maxlength="140" placeholder="Hablarle a la clase..."></textarea>
+            <button id="send" onclick='postMessages()'><strong>Enviar</strong></button>
         </div>
         <div id="userInput">
             <div id="userLabel">
                 <h2>Chateando como:</h2>
             </div>
-            <textarea id="user" maxlength="26" placeholder="Usuario"></textarea>
+            <textarea id="userEntry" maxlength="26" placeholder="Usuario"></textarea>
         </div>
     </div>
     <script src="/static/script.js"></script>

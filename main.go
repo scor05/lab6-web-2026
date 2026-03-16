@@ -13,10 +13,10 @@ type Message struct {
 	USER string `json:"user"`
 }
 
-var messages []Message
 var chatApi = "https://chat.joelsiervas.online"
 
 func getMessages(w http.ResponseWriter, r *http.Request) {
+	var messages = []Message{}
 	resp, err := http.Get(chatApi + "/messages")
 	if err != nil {
 		fmt.Printf("Error in API get: ", err)
