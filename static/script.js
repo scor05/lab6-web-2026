@@ -1,6 +1,12 @@
+var messages = [];
+
 const getMessages = async () => {
     const response = await fetch('/messages');
-    const messages = await response.json();
+    const messagesNew = await response.json();
+    if (JSON.stringify(messages) === JSON.stringify(messagesNew)) {
+        return;
+    }
+    messages = messagesNew;
 
     const ul = document.getElementById('messageList');
     ul.innerHTML = '';
@@ -10,15 +16,34 @@ const getMessages = async () => {
             const displayText = (originalText.length >= 140) ? originalText.substring(0, 139) + "..." : originalText;
             const li = document.createElement('li');
             li.innerHTML = `<strong>${messages[i].user}</strong>: ${displayText}`;
-
             ul.appendChild(li)
+
+            const imgTypes = ['png', 'jpg', 'jpeg', 'gif', 'webp']
+            const isImg = imgTypes.some(value => originalText.includes(value));
+            if (originalText.includes('https://') || originalText.includes('http://')) {
+                const urlRegex = /(https?:\/\/[^\s]+)/g;
+                const url = originalText.match(urlRegex);
+                console.log("url detected: ", url);
+
+                if (isImg) {
+                    const imgElement = document.createElement("img");
+                    imgElement.setAttribute('src', url);
+                    ul.appendChild(imgElement);
+                } else {
+                    const iframe = document.createElement("iframe");
+                    iframe.setAttribute('src', url);
+                    iframe.setAttribute('width', '800');
+                    iframe.setAttribute('height', '700');
+                    ul.appendChild(iframe);
+                }
+            }
         }
     }
 }
 
 getMessages();
+setInterval(getMessages, 5000);
 
-setInterval(getMessages, 2000); // refrescar mensaje automáticamente
 
 const postMessages = async () => {
     const text = document.getElementById("message").value;
