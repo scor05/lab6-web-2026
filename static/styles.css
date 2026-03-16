@@ -7,6 +7,11 @@
 
 :root {
     --customFont: "codefont";
+    --headerColor: rgb(0, 255, 0);
+    --textColor: chartreuse;
+    --bgColor: rgb(50, 50, 50);
+    --labelColor: rgb(70, 70, 70);
+    --bgOpacity: 0.97;
 }
 
 body {
@@ -24,7 +29,8 @@ body * {
 
 h1 {
     font-size: 70px;
-    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
 }
 
 h2 {
@@ -33,7 +39,7 @@ h2 {
 
 h1,
 h2 {
-    color: rgb(0, 255, 0);
+    color: var(--headerColor);
     text-shadow:
         -1px -1px 5px #000,
         1px -1px 5px #000,
@@ -41,8 +47,22 @@ h2 {
         1px 1px 5px #000;
 }
 
+#messageList {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
 li {
+    color: var(--textColor);
     font-size: 25px;
+    width: 100%;
+    padding: 5px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 textarea {
@@ -54,7 +74,8 @@ textarea {
     border: 2px solid black;
     outline: none;
     resize: none;
-    color: chartreuse;
+    color: var(--textColor);
+    background-color: var(--bgColor);
     width: 75vw;
 }
 
@@ -65,11 +86,12 @@ textarea:focus {
     border-radius: 15px;
     padding: 10px;
     border: 2px solid black;
-    color: chartreuse;
+    color: var(--textColor);
     box-shadow:
-        0 0 5px chartreuse,
-        0 0 10px chartreuse;
+        0 0 5px var(--textColor),
+        0 0 10px var(--textColor);
     outline: 1px solid black;
+    background-color: var(--bgColor);
     resize: none;
     width: 75vw;
 }
@@ -97,10 +119,10 @@ button:active {
     height: 60px;
     margin-left: 20px;
     padding: 5px;
-    color: chartreuse;
+    color: var(--textColor);
     box-shadow:
-        0 0 5px chartreuse,
-        0 0 10px chartreuse;
+        0 0 5px var(--textColor),
+        0 0 10px var(--textColor);
     outline: 2px solid black;
 }
 
@@ -110,7 +132,7 @@ button:active {
     width: 100%;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-image: url("huaxiake-012.gif");
     background-size: cover;
     background-position: center;
@@ -123,18 +145,21 @@ button:active {
 #content {
     align-self: flex-start;
     display: flex;
+    flex-wrap: wrap;
     background-color: dimgray;
     border-radius: 20px;
     padding: 5px;
     margin: 10px;
     margin-left: 30px;
+    overflow-x: hidden;
     overflow-y: auto;
     width: 90vw;
     height: 500px;
     flex-direction: column-reverse;
     align-items: flex-start;
-    background-color: rgb(40, 40, 40);
+    background-color: var(--bgColor);
     outline: 2px solid black;
+    opacity: var(--bgOpacity);
 }
 
 #input {
@@ -144,10 +169,11 @@ button:active {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    opacity: var(--bgOpacity);
 }
 
 #input * {
-    background-color: rgb(50, 50, 50);
+    background-color: var(--bgColor);
 }
 
 #msglabel {
@@ -159,6 +185,49 @@ button:active {
     margin-bottom: -10px;
     margin-left: 50px;
     padding: 5px 10px 5px 10px;
-    background-color: rgb(70, 70, 70);
+    background-color: var(--labelColor);
+    opacity: var(--bgOpacity);
     border-radius: 10px 10px 0px 0px;
+}
+
+#headerdiv {
+    background-color: var(--bgColor);
+    outline: 2px solid black;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 40px;
+    width: 100%;
+    height: 100px;
+    border-radius: 0px 0px 15px 15px;
+}
+
+#userInput {
+    display: flex;
+    width: 750px;
+    height: 100px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    margin-top: -50px;
+}
+
+#userLabel {
+    display: flex;
+    width: 250px;
+    height: 50px;
+    border-radius: 15px 0px 0px 15px;
+    background-color: var(--labelColor);
+    align-items: center;
+    justify-content: center;
+    outline: 2px solid black;
+    margin-right: -5px;
+}
+
+#userLabel h2 {
+    padding: 5px;
+}
+
+#userInput textarea {
+    width: 450px;
 }

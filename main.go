@@ -34,9 +34,10 @@ func postMessages(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir("./static")))
+	http.Handle("GET /", http.FileServer(http.Dir("./static")))
 	http.HandleFunc("GET /messages", getMessages)
 	http.HandleFunc("POST /messages", postMessages)
+	http.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	fmt.Println("Server running on port 8080")
 	err := http.ListenAndServe("127.0.0.1:8080", nil)
