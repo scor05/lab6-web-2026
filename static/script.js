@@ -46,13 +46,18 @@ setInterval(getMessages, 5000);
 
 
 const postMessages = async () => {
-    const text = document.getElementById("message").value;
-    const user = document.getElementById("userEntry").value;
+    const textElement = document.getElementById("message");
+    const userElement = document.getElementById("userEntry").value;
+    const text = textElement.value;
+    const user = userEntry.value;
+
     const userText = (user == '') ? 'Usuario' : user;
     if (text == '') {
         alert("Debe de ingresar un mensaje");
+        return;
     } else {
         console.log("sending message: ", text, userText)
+        textElement.value = '';
         const response = await fetch("/messages", {
             method: "POST",
             headers: {

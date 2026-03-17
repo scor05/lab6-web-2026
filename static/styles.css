@@ -1,14 +1,14 @@
 @font-face {
     font-family: "codefont";
-    src: url("SourceCodePro-VariableFont_wght.ttf") format("truetype");
+    src: url("fonts/GiloxLight-MAxDv.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
 
 :root {
     --customFont: "codefont";
-    --headerColor: rgb(0, 255, 0);
-    --textColor: chartreuse;
+    --headerColor: #8affbb;
+    --textColor: #19ffa7;
     --bgColor: rgb(50, 50, 50);
     --labelColor: rgb(70, 70, 70);
     --bgOpacity: 0.95;
@@ -30,11 +30,11 @@ body * {
 h1 {
     font-size: 70px;
     padding-left: 20px;
-    padding-top: 5px;
+    padding-top: 15px;
 }
 
 h2 {
-    font-size: 25px;
+    font-size: 30px;
 }
 
 h1,
@@ -57,7 +57,7 @@ h2 {
 
 li {
     color: var(--textColor);
-    font-size: 25px;
+    font-size: 30px;
     width: 100%;
     padding: 5px;
     white-space: normal;
