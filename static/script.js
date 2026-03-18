@@ -8,6 +8,10 @@ const getMessages = async () => {
     }
     messages = messagesNew;
 
+    const contentDiv = document.getElementById('content');
+    const prevScrollPos = contentDiv.scrollTop;
+    const bottomScroll = prevScrollPos <= 20; // píxeles de margen de error
+
     const ul = document.getElementById('messageList');
     ul.innerHTML = '';
     for (let i = 0; i < messages.length; i++) {
@@ -20,6 +24,7 @@ const getMessages = async () => {
 
             const imgTypes = ['png', 'jpg', 'jpeg', 'gif', 'webp']
             const isImg = imgTypes.some(value => originalText.includes(value));
+
             if (originalText.includes('https://') || originalText.includes('http://')) {
                 const urlRegex = /(https?:\/\/[^\s]+)/g;
                 const url = originalText.match(urlRegex);
@@ -39,17 +44,23 @@ const getMessages = async () => {
             }
         }
     }
+    if (bottomScroll) {
+        contentDiv.scrollTop = 0;
+    } else {
+        contentDiv.scrollTop = prevScrollPos;
+    }
 }
 
+document.getElementById('content').scrollTop = 0;
 getMessages();
 setInterval(getMessages, 5000);
 
 
 const postMessages = async () => {
     const textElement = document.getElementById("message");
-    const userElement = document.getElementById("userEntry").value;
+    const userElement = document.getElementById("userEntry");
     const text = textElement.value;
-    const user = userEntry.value;
+    const user = userElement.value;
 
     const userText = (user == '') ? 'Usuario' : user;
     if (text == '') {
